@@ -15,6 +15,11 @@ const FooterContainer = styled.div`
 
     border-top-width: 1.5px;
 
+    
+    @media (max-width: 670px) {
+        height: 300px;
+    }
+
 
 `
 

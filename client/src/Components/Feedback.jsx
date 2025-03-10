@@ -42,7 +42,7 @@ const Feedback = () => {
     <Container>
         <HeaderText>Want to Contribute?</HeaderText>
         <SubText>We take each response into consideration! Share about your time on thriftly and help us improve your overall experience.</SubText>
-        <Button>Submit Feedback</Button>
+        <Button target="blank" href='https://docs.google.com/forms/d/e/1FAIpQLScKPNeDwN3PRmgKdhjAS3DN-gJvPiOo4yQW2OC0MPe-0SpHrQ/viewform'>Submit Feedback</Button>
     </Container>
   )
 }

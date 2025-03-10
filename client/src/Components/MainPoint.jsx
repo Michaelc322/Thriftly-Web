@@ -88,20 +88,20 @@ const MainPoint = () => {
             <SectionHeaderText
                 initial={{opacity: 0, x: -50}}
                 whileInView={{opacity: 1, x: 0, transition: {delay: 0, duration: 0.5}}}
-                viewport={{once: false, amount: 0.5}}            
+                viewport={{once: true, amount: 0.5}}            
             >A Social College Student Marketplace Made for You</SectionHeaderText>
 
             <SubText
                     initial={{opacity: 0, x: -50}}
                     whileInView={{opacity: 1, x: 0, transition: {delay: 0.2, duration: 0.5}}}
-                    viewport={{once: false, amount: 0.5}}            
+                    viewport={{once: true, amount: 0.5}}            
             >Thriftly lets college students shop in a common marketplace where they can interact and connect with each other.</SubText>
 
             <BulletPointContainer>
                 <BulletPoint
                     initial={{opacity: 0, x: -50}}
                     whileInView={{opacity: 1, x: 0, transition: {delay: 0, duration: 0.5}}}
-                    viewport={{once: false, amount: 0.5}}                
+                    viewport={{once: true, amount: 0.5}}                
                 >
                     <BulletPointIcon className='fa-solid fa-caret-right'/>
                     <BulletText>Real-time messaging</BulletText>
@@ -109,8 +109,8 @@ const MainPoint = () => {
 
                 <BulletPoint
                     initial={{opacity: 0, x: -50}}
-                    whileInView={{opacity: 1, x: 0, transition: {delay: 0.3, duration: 0.5}}}
-                    viewport={{once: false, amount: 0.5}}                
+                    whileInView={{opacity: 1, x: 0, transition: {delay: 0.1, duration: 0.5}}}
+                    viewport={{once: true, amount: 0.5}}                
                 >
                     <BulletPointIcon className='fa-solid fa-caret-right'/>
                     <BulletText>Instantly connect with friends</BulletText>
@@ -118,8 +118,8 @@ const MainPoint = () => {
 
                 <BulletPoint
                     initial={{opacity: 0, x: -50}}
-                    whileInView={{opacity: 1, x: 0, transition: {delay: 0.5, duration: 0.5}}}
-                    viewport={{once: false, amount: 0.5}}                
+                    whileInView={{opacity: 1, x: 0, transition: {delay: 0.2, duration: 0.5}}}
+                    viewport={{once: true, amount: 0.5}}                
                 >
                     <BulletPointIcon className='fa-solid fa-caret-right'/>
                     <BulletText>Shop by category</BulletText>
@@ -136,7 +136,7 @@ const MainPoint = () => {
             />
             <PhoneMock src="/screens/profile.png"
                 initial={{opacity: 0, x: 50}}
-                whileInView={{opacity: 1, x: 0, transition: {delay: 0.3, duration: 0.5}}}
+                whileInView={{opacity: 1, x: 0, transition: {delay: 0.1, duration: 0.5}}}
                 viewport={{once: true, amount: 0.5}}            
             />
         </RightContainer>
