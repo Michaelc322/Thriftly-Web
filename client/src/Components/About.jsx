@@ -95,7 +95,7 @@ const About = () => {
             <Card
                 initial={{opacity: 0, y: 50}}
                 whileInView={{opacity: 1, y: 0, transition: {delay: 0.3, duration: 0.5}}}
-                viewport={{once: false, amount: 0.5}}
+                viewport={{once: true, amount: 0.5}}
             >
                 <Icon className="fa-solid fa-user-group"></Icon>
                 <CardText>Social Marketplace</CardText>
