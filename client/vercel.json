@@ -1,4 +1,14 @@
 {
+  "rewrites": [
+    {
+      "source": "/.well-known/:match*",
+      "destination": "/.well-known/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",
