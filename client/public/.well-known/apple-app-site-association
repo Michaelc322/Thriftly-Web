@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appId": "5Y4MNDV97W.com.anonymous.Thriftly",
+        "paths": [
+          "/viewProfile*",
+          "/listingDetails*"
+        ]
+      }
+    ]
+  }
+}
