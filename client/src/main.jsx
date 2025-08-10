@@ -8,6 +8,7 @@ import Home from './Pages/Home.jsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import PrivacyPolicy from './Pages/PrivacyPolicy.jsx'
 import Terms from './Pages/Terms.jsx'
+import ResetPassword from './Pages/ResetPassword.jsx'
 
 
 const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
       <Route path='/terms-of-use' element={<Terms/>}/>
       <Route path='/*' element={<Home />}/>
+      <Route path='/reset-password' element={<ResetPassword />} />
     </Route>
   )
 )
