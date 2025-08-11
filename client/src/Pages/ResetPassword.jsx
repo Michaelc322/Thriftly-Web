@@ -70,13 +70,31 @@ const ResetPassword = () => {
   // Parse the fragment parameters
   const params = new URLSearchParams(hash);
 
-  // Get the access token value
-  const accessToken = params.get("access_token");
+  const tokenHash = params.get("token_hash");
 
-  // You can also get refresh token or other values the same way
-  const refreshToken = params.get("refresh_token");
+  // const accessToken = params.get("access_token");
+
+  // const refreshToken = params.get("refresh_token");
   useEffect(() => {
     async function checkSession() {
+      console.log(tokenHash);
+      const { data, error } = await supabase.auth.verifyOtp({
+        token_hash: tokenHash,
+        type: "email",
+      });
+
+      console.log(data);
+
+      if (error) {
+        console.log(error);
+        setInvalidLink(true);
+        setLoading(false);
+        return;
+      }
+
+      const accessToken = data?.session?.access_token;
+      const refreshToken = data?.session?.refresh_token;
+
       const {
         data: { user },
       } = await supabase.auth.getUser(accessToken);
@@ -84,9 +102,9 @@ const ResetPassword = () => {
       console.log("User data:", accessToken);
       if (!user) {
         setMessage("Invalid or expired reset link.");
-        navigate("/");
+        setInvalidLink(true);
       } else {
-        supabase.auth.setSession({
+        await supabase.auth.setSession({
           access_token: accessToken,
           refresh_token: refreshToken, // if you have it
         });
@@ -113,6 +131,10 @@ const ResetPassword = () => {
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password: newPassword });
     await supabase.auth.signOut();
+
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
     setLoading(false);
 
     if (error) {
@@ -127,106 +149,126 @@ const ResetPassword = () => {
   return (
     <>
       <Section>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: "100%",
-            maxWidth: 400,
-            backgroundColor: "#fff",
-            padding: 20,
-            borderRadius: 10,
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: "10rem",
-          }}
-        >
-          <h2 style={{ color: "#D72638", marginBottom: 40 }}>
-            Change Password
-          </h2>
+        {invalidLink ? (
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center", // centers child horizontally
-              marginBottom: 10,
+              width: "100%",
+              maxWidth: 400,
+              backgroundColor: "#fff",
+              padding: 20,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "10rem",
             }}
           >
-            <div style={{ width: "100%" }}>
+            <h2 style={{ color: "#D72638", marginBottom: 40 }}>Invalid Link</h2>
+            <p style={{ color: "#000" }}>
+              This link is invalid or has expired.
+            </p>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              width: "100%",
+              maxWidth: 400,
+              backgroundColor: "#fff",
+              padding: 20,
+              borderRadius: 10,
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "10rem",
+            }}
+          >
+            <h2 style={{ color: "#D72638", marginBottom: 40 }}>
+              Change Password
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center", // centers child horizontally
+                marginBottom: 10,
+              }}
+            >
               <div style={{ width: "100%" }}>
-                <h5
-                  style={{
-                    color: "#D72638",
-                    marginBottom: 6,
-                    textAlign: "left",
-                  }}
-                >
-                  New Password
-                </h5>
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: 10,
-                    border: "2px solid #ccc",
-                    borderRadius: 8,
-                    boxSizing: "border-box",
-                  }}
-                />
-              </div>
-              <div style={{ width: "100%" }}>
-                <h5
-                  style={{
-                    color: "#D72638",
-                    marginBottom: 6,
-                    textAlign: "left",
-                  }}
-                >
-                  Confirm New Password
-                </h5>
-                <input
-                  type="password"
-                  placeholder="Confirm New Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: 10,
-                    marginBottom: 40,
-                    border: "2px solid #ccc",
-                    borderRadius: 8,
-                    boxSizing: "border-box",
-                  }}
-                />
+                <div style={{ width: "100%" }}>
+                  <h5
+                    style={{
+                      color: "#D72638",
+                      marginBottom: 6,
+                      textAlign: "left",
+                    }}
+                  >
+                    New Password
+                  </h5>
+                  <input
+                    type="password"
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: 10,
+                      border: "2px solid #ccc",
+                      borderRadius: 8,
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
+                <div style={{ width: "100%" }}>
+                  <h5
+                    style={{
+                      color: "#D72638",
+                      marginBottom: 6,
+                      textAlign: "left",
+                    }}
+                  >
+                    Confirm New Password
+                  </h5>
+                  <input
+                    type="password"
+                    placeholder="Confirm New Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: 10,
+                      marginBottom: 40,
+                      border: "2px solid #ccc",
+                      borderRadius: 8,
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              width: "60%",
-              padding: 10,
-              backgroundColor: "#D72638",
-              borderRadius: 8,
-              color: "#fff",
-              border: "none",
-              cursor: "pointer",
-              fontSize: 16,
-              fontWeight: "bold",
-            }}
-          >
-            {loading ? "Updating..." : "Reset my password"}
-          </button>
-          {errorMsg && (
-            <p style={{ color: "red", marginTop: 10 }}>{errorMsg}</p>
-          )}
-          {successMsg && (
-            <p style={{ color: "green", marginTop: 10 }}>{successMsg}</p>
-          )}
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              style={{
+                width: "60%",
+                padding: 10,
+                backgroundColor: "#D72638",
+                borderRadius: 8,
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+                fontSize: 16,
+                fontWeight: "bold",
+              }}
+            >
+              {loading ? "Updating..." : "Reset my password"}
+            </button>
+            {errorMsg && (
+              <p style={{ color: "red", marginTop: 10 }}>{errorMsg}</p>
+            )}
+            {successMsg && (
+              <p style={{ color: "green", marginTop: 10 }}>{successMsg}</p>
+            )}
+          </form>
+        )}
       </Section>
     </>
   );
