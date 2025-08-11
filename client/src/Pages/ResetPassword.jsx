@@ -130,12 +130,6 @@ const ResetPassword = () => {
 
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password: newPassword });
-    await supabase.auth.signOut();
-
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
-    setLoading(false);
 
     if (error) {
       setErrorMsg(error.message);
@@ -143,7 +137,13 @@ const ResetPassword = () => {
       setSuccessMsg("Password changed successfully!");
       setNewPassword("");
       setConfirmPassword("");
+      await supabase.auth.signOut();
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
+    setLoading(false);
   };
 
   return (
