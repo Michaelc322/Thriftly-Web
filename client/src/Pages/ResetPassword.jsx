@@ -5,6 +5,7 @@ import About from "../Components/About";
 import MainPoint from "../Components/MainPoint";
 import Feedback from "../Components/Feedback";
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
 
 const Section = styled.section`
   padding: 100px 20px;
@@ -41,7 +42,12 @@ const HeaderInfo = styled.div`
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
+  import.meta.env.VITE_SUPABASE_ANON_KEY,
+  {
+    auth: {
+      detectSessionInUrl: true,
+    },
+  }
 );
 
 const HeaderSubText = motion(styled.h2`
@@ -57,18 +63,33 @@ const ResetPassword = () => {
   const [invalidLink, setInvalidLink] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const navigate = useNavigate();
 
+  const hash = window.location.hash.substring(1); // removes the '#'
+
+  // Parse the fragment parameters
+  const params = new URLSearchParams(hash);
+
+  // Get the access token value
+  const accessToken = params.get("access_token");
+
+  // You can also get refresh token or other values the same way
+  const refreshToken = params.get("refresh_token");
   useEffect(() => {
     async function checkSession() {
       const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+        data: { user },
+      } = await supabase.auth.getUser(accessToken);
 
-      console.log("Session data:", session);
-      if (error || !session) {
-        console.error("Error fetching session:", error);
+      console.log("User data:", accessToken);
+      if (!user) {
         setMessage("Invalid or expired reset link.");
+        navigate("/");
+      } else {
+        supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken, // if you have it
+        });
       }
       setLoading(false);
     }
@@ -90,7 +111,8 @@ const ResetPassword = () => {
     }
 
     setLoading(true);
-    const { error } = await supabase.auth.updateUser({ newPassword });
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    await supabase.auth.signOut();
     setLoading(false);
 
     if (error) {
