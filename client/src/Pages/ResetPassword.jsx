@@ -119,8 +119,8 @@ const ResetPassword = () => {
     setErrorMsg("");
     setSuccessMsg("");
 
-    if (newPassword.length < 6) {
-      setErrorMsg("Password must be at least 6 characters.");
+    if (newPassword.length < 7) {
+      setErrorMsg("Password must be at least 7 characters.");
       return;
     }
     if (newPassword !== confirmPassword) {
@@ -164,7 +164,8 @@ const ResetPassword = () => {
           >
             <h2 style={{ color: "#D72638", marginBottom: 40 }}>Invalid Link</h2>
             <p style={{ color: "#000" }}>
-              This link is invalid or has expired.
+              This link is invalid or has expired. If you are having trouble,
+              please contact thriftly.help@gmail.com
             </p>
           </div>
         ) : (

@@ -174,7 +174,7 @@ const Terms = () => {
                 <br/>
 
                 <Title>12. Contact Us</Title>
-                <Text>If you have any questions about these Terms or need assistance, please contact us at team@thriftlyapp.com.</Text>
+                <Text>If you have any questions about these Terms or need assistance, please contact us at thriftly.help@gmail.com.</Text>
             </TextBox>
 
         </MainContainer>

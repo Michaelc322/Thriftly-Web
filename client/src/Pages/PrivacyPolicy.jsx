@@ -134,7 +134,7 @@ const PrivacyPolicy = () => {
                 <br/>
 
                 <Title>Contact Us</Title>
-                <Text>If you have any questions or concerns about this Privacy Policy or how we handle your personal information, please contact us at team@thriftlyapp.com.</Text>
+                <Text>If you have any questions or concerns about this Privacy Policy or how we handle your personal information, please contact us at thriftly.help@gmail.com.</Text>
             </TextBox>
 
         </MainContainer>
