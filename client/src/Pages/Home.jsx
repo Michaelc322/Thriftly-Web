@@ -4,31 +4,26 @@ import { delay, motion } from "framer-motion";
 import About from "../Components/About";
 import MainPoint from "../Components/MainPoint";
 import Feedback from "../Components/Feedback";
+import RequestSchoolSection from "../Components/RequestSchool";
 
 const Section = styled.section`
+  width: 100%;
   padding: 100px 20px;
-  height: 100vh;
   text-align: center;
 
-  &:nth-of-type(1) {
-    height: 500px;
+  background-color: ${({ variant }) =>
+    variant === "red" ? "#d72638" : "#f5f5f5"};
 
-    @media (max-width: 1370px) {
-      height: 1000px;
-    }
-    background-color: #d72638;
+  /* Default (desktop) height behavior */
+  min-height: ${({ tall }) => (tall ? "100vh" : "auto")};
+
+  @media (max-width: 1370px) {
+    min-height: ${({ tall }) => (tall ? "120vh" : "auto")};
   }
-  &:nth-of-type(2) {
-    height: auto;
-    background-color: #f5f5f5;
-  }
-  &:nth-of-type(3) {
-    height: auto;
-    background-color: #d72638;
-  }
-  &:nth-of-type(4) {
-    height: auto;
-    background-color: #f5f5f5;
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+    min-height: auto; /* Mobile should not force height */
   }
 `;
 
@@ -123,7 +118,7 @@ const DownloadText = styled.p`
 const Home = () => {
   return (
     <>
-      <Section id="home">
+      <Section id="home" variant="red">
         <HeaderContainer>
           <HeaderInfo>
             <LogoHeader
@@ -164,15 +159,19 @@ const Home = () => {
         </HeaderContainer>
       </Section>
 
-      <Section id="about">
+      <Section id="about" variant="light">
         <About />
       </Section>
 
-      <Section id="about">
+      <Section id="about" variant="red">
         <MainPoint />
       </Section>
 
-      <Section id="feedback">
+      <Section id="request-school" variant="light">
+        <RequestSchoolSection />
+      </Section>
+
+      <Section id="feedback" variant="light">
         <Feedback />
       </Section>
     </>

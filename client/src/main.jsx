@@ -20,6 +20,8 @@ import AdminCreateAccount from "./Pages/AdminCreateAccount.jsx";
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 
 import { Navigate, Outlet } from "react-router-dom";
+import AdminDashboard from "./Pages/AdminDashboard.jsx";
+import BusinessDashboard from "./Pages/BusinessSuite/BusinessDashboard.jsx";
 const PrivateRoutes = () => {
   const { admin } = useAuth();
   return admin ? <Outlet /> : <Navigate to="/admin/login" />;
@@ -34,10 +36,13 @@ const router = createBrowserRouter(
       <Route path="/*" element={<Home />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/admin/login" element={<AdminLogin />} />
+      {/* <Route element={<PrivateRoutes />}>
+        <Route path="/admin/create-account" element={<AdminCreateAccount />} />
+      </Route> */}
+      <Route path="/admin/create-account" element={<AdminCreateAccount />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-      <Route element={<PrivateRoutes />}>
-        {/* <Route path="/admin/create-account" element={<AdminCreateAccount />} /> */}
-      </Route>
+      <Route path="/business-suite/dashboard" element={<BusinessDashboard />} />
     </Route>
   )
 );
