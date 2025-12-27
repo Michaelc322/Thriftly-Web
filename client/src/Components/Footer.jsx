@@ -67,11 +67,6 @@ const Footer = () => {
       <ButtonGroupSocials>
         <Icon
           target="blank"
-          href="https://www.linkedin.com/in/michaelcarroll-dev/"
-          className="fa-brands fa-linkedin"
-        />
-        <Icon
-          target="blank"
           href="https://www.instagram.com/thriftly.us"
           className="fa-brands fa-instagram"
         />
@@ -81,3 +76,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
