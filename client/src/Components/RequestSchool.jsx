@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Section = styled.div`
-  width: 100%;
   padding: 5rem 0;
   display: flex;
   flex-direction: column;

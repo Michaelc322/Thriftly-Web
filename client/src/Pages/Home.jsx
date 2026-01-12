@@ -7,7 +7,6 @@ import Feedback from "../Components/Feedback";
 import RequestSchoolSection from "../Components/RequestSchool";
 
 const Section = styled.section`
-  width: 100%;
   padding: 100px 20px;
   text-align: center;
 
