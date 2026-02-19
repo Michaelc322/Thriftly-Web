@@ -7,8 +7,8 @@
         "paths": [
           "/viewProfile/*",
           "/listingDetails/*",
-          "/signup",
-          "/signup/*"
+          "/signUp",
+          "/signUp/*"
         ]
       }
     ]
