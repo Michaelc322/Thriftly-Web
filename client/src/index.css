@@ -1,21 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Manrope", sans-serif;
+
+  --brand-red-500: #d72638;
+  --brand-coral-400: #f26f5f;
+
+  --surface-0: #fff8f5;
+  --surface-1: #fff2ed;
+  --ink-900: #121a2a;
+  --ink-800: #253149;
+  --ink-700: #384763;
+  --ink-600: #596782;
+
   line-height: 1.5;
-  font-weight: 400;
-
-
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
-
+  font-weight: 500;
+  font-family: var(--font-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+}
+
+html {
   scroll-behavior: smooth;
+  background: var(--surface-0);
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--surface-0);
+  color: var(--ink-900);
+}
+
+a {
+  color: inherit;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  color: #fff;
+  background: var(--brand-red-500);
 }
