@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "../constants/storeLinks";
 
 const Wrapper = styled.header`
   position: fixed;
@@ -76,6 +77,16 @@ const LinkButton = styled.a`
   }
 `;
 
+const AppCtaGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 980px) {
+    display: none;
+  }
+`;
+
 const AppCta = styled.a`
   display: inline-flex;
   align-items: center;
@@ -93,6 +104,15 @@ const AppCta = styled.a`
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 14px 28px rgba(215, 38, 56, 0.3);
+  }
+`;
+
+const PlayCta = styled(AppCta)`
+  background: rgba(12, 22, 38, 0.86);
+  box-shadow: 0 10px 24px rgba(12, 22, 38, 0.24);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(12, 22, 38, 0.3);
   }
 
   @media (max-width: 980px) {
@@ -156,8 +176,13 @@ const mobileLinks = [
   { href: "/privacy-policy", label: "Privacy Policy" },
   { href: "/terms-of-use", label: "Terms of Use" },
   {
-    href: "https://apps.apple.com/us/app/thriftly-1-college-market/id6748266194",
-    label: "Download App",
+    href: APP_STORE_URL,
+    label: "Download on App Store",
+    external: true,
+  },
+  {
+    href: GOOGLE_PLAY_URL,
+    label: "Get on Google Play",
     external: true,
   },
 ];
@@ -180,14 +205,16 @@ function Navbar() {
           <LinkButton href="/terms-of-use">Terms</LinkButton>
         </LinkGroup>
 
-        <AppCta
-          href="https://apps.apple.com/us/app/thriftly-1-college-market/id6748266194"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <i className="fa-brands fa-app-store-ios" />
-          Get the app
-        </AppCta>
+        <AppCtaGroup>
+          <AppCta href={APP_STORE_URL} target="_blank" rel="noreferrer">
+            <i className="fa-brands fa-app-store-ios" />
+            App Store
+          </AppCta>
+          <PlayCta href={GOOGLE_PLAY_URL} target="_blank" rel="noreferrer">
+            <i className="fa-brands fa-google-play" />
+            Google Play
+          </PlayCta>
+        </AppCtaGroup>
 
         <MobileButton
           aria-label="Toggle menu"

@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "../constants/storeLinks";
 
 const featureItems = [
   {
@@ -745,12 +746,16 @@ const Home = () => {
               transition={{ delay: 0.4, duration: 0.65 }}
             >
               <AppStoreButton
-                href="https://apps.apple.com/us/app/thriftly-1-college-market/id6748266194"
+                href={APP_STORE_URL}
                 target="_blank"
                 rel="noreferrer"
               >
                 <i className="fa-brands fa-app-store-ios" />
                 Download on the App Store
+              </AppStoreButton>
+              <AppStoreButton href={GOOGLE_PLAY_URL} target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-google-play" />
+                Get it on Google Play
               </AppStoreButton>
               <SecondaryButton href="/#features">
                 Explore features
@@ -969,12 +974,16 @@ const Home = () => {
           </FinalText>
           <FinalActions>
             <AppStoreButton
-              href="https://apps.apple.com/us/app/thriftly-1-college-market/id6748266194"
+              href={APP_STORE_URL}
               target="_blank"
               rel="noreferrer"
             >
               <i className="fa-brands fa-app-store-ios" />
               Get Thriftly
+            </AppStoreButton>
+            <AppStoreButton href={GOOGLE_PLAY_URL} target="_blank" rel="noreferrer">
+              <i className="fa-brands fa-google-play" />
+              Get it on Google Play
             </AppStoreButton>
             <SecondaryButton
               href="https://docs.google.com/forms/d/e/1FAIpQLScKPNeDwN3PRmgKdhjAS3DN-gJvPiOo4yQW2OC0MPe-0SpHrQ/viewform"

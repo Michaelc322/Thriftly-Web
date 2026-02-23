@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "../constants/storeLinks";
 
 const FooterContainer = styled.footer`
   background: linear-gradient(138deg, #8e1222 0%, #c41f33 56%, #f26f5f 128%);
@@ -53,6 +54,16 @@ const Tagline = styled.p`
   line-height: 1.6;
 `;
 
+const AppButtonRow = styled.div`
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+`;
+
 const AppButton = styled.a`
   width: fit-content;
   display: inline-flex;
@@ -70,6 +81,11 @@ const AppButton = styled.a`
     width: 100%;
     justify-content: center;
   }
+`;
+
+const PlayButton = styled(AppButton)`
+  color: #fff;
+  background: rgba(12, 22, 38, 0.82);
 `;
 
 const Column = styled.div`
@@ -146,14 +162,16 @@ const Footer = () => {
               Made for college students, by college students. A cleaner way to
               buy and sell across your campus community.
             </Tagline>
-            <AppButton
-              href="https://apps.apple.com/us/app/thriftly-1-college-market/id6748266194"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa-brands fa-app-store-ios" />
-              Download app
-            </AppButton>
+            <AppButtonRow>
+              <AppButton href={APP_STORE_URL} target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-app-store-ios" />
+                App Store
+              </AppButton>
+              <PlayButton href={GOOGLE_PLAY_URL} target="_blank" rel="noreferrer">
+                <i className="fa-brands fa-google-play" />
+                Google Play
+              </PlayButton>
+            </AppButtonRow>
           </Brand>
 
           <Column>
