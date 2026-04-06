@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
         <MainContainer>
           <TextBox>
             <SubHeader>
-              Effective Date: March 30, 2025 · Last Updated: March 30, 2025
+              Effective Date: March 30, 2026 · Last Updated: March 30, 2026
             </SubHeader>
             <Text>
               At Thriftly, we value and respect your privacy. This Privacy
